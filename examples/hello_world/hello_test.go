@@ -59,7 +59,7 @@ func TestHello(t *testing.T) {
 
 		defer os.RemoveAll(
 			globals.GetDataDirectory(),
-		)
+		) // clean up now that you are done.
 
 	}()
 

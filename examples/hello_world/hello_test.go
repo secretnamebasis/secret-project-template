@@ -21,7 +21,9 @@ var arg_flags args = args{
 }
 
 func TestHello(t *testing.T) {
+
 	var err error
+
 	func() {
 
 		// implement simulated DERO serve
@@ -48,14 +50,25 @@ func TestHello(t *testing.T) {
 		}
 
 		helloworldServer, err := rpc.RPCServer_Start(params)
+
 		if err != nil {
 			t.Error(err)
 		}
+
 		defer helloworldServer.RPCServer_Stop()
+
+		defer os.RemoveAll(
+			globals.GetDataDirectory(),
+		)
+
 	}()
+
 	expect := "Hello, World!"
+
 	observed := hello_world.Hello()
+
 	if observed != expect {
 		t.Errorf("expected: %s, observed: %s,", expect, observed)
 	}
+
 }

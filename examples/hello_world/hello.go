@@ -7,8 +7,8 @@ import (
 )
 
 func Hello() string {
-	args := []string{"Hello, World!"}
-	ctx := context.Background()
-	deroHello := rpc.Echo(ctx, args)
-	return deroHello[5:] // trim `DERO ` from the echo
+	return rpc.Echo(
+		context.Background(),
+		[]string{"Hello, World!"},
+	)[5:] // trim the `DERO ` from the echo
 }
